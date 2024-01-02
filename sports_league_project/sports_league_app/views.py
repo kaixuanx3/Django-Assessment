@@ -120,7 +120,6 @@ def add_game(request):
     return render(request, 'add_game.html', {'form': form})
 
 def edit_game(request, team_name):
-    game = get_object_or_404(Game, team1_name=team_name)
     if request.method == 'POST':
         form = GameForm(request.POST, instance=game)
         if form.is_valid():
@@ -128,12 +127,12 @@ def edit_game(request, team_name):
             return redirect('edit_game')
     else:
         form = GameForm(instance=game)
-    return render(request, 'edit_game.html', {'form': form, 'game': game})
+    return render(request, 'edit_game.html', {'form': form})
 
 def delete_game(request, team_name):
-    game = get_object_or_404(Game, team1_name=team_name)
     if request.method == 'POST':
+        form = GameForm(request.POST)
         game.delete()
         return redirect('delete_game')
-    return render(request, 'delete_game.html', {'game': game})
+    return render(request, 'delete_game.html', {'form': form})
 
