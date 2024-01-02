@@ -6,6 +6,9 @@ class Game(models.Model):
     team2_name = models.CharField(max_length=255)
     team2_score = models.IntegerField()
 
+    def __str__(self):
+        return self.team_name
+        
     @property
     def points(self):
         # Calculate and return points based on the game result
