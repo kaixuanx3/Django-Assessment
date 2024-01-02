@@ -12,6 +12,20 @@
     <form method="get" action="{% url 'add_game' %}">
         <button type="submit">Add New Game</button>
     </form>
+    
+    <p> </p>
+
+    <form method="get" action="{% url 'edit_game' %}">
+        <button type="submit">Edit Game</button>
+    </form>
+
+    <p> </p>
+
+    <form method="get" action="{% url 'delete_game' %}">
+        <button type="submit">Delete Game</button>
+    </form>
+
+    <p> </p>
 
     <table border="1">
         <thead>
@@ -19,7 +33,6 @@
                 <th>Ranking</th>
                 <th>Team</th>
                 <th>Points</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,10 +41,6 @@
                     <td>{{ forloop.counter }}</td>
                     <td>{{ team.team_name }}</td>
                     <td>{{ team.points }}</td>
-                    <td>
-                        <a href="{% url 'edit_game' game_id=team.team_name %}">Edit</a>
-                        <a href="{% url 'delete_game' game_id=team.team_name %}">Delete</a>
-                    </td>
                 </tr>
             {% endfor %}
         </tbody>
