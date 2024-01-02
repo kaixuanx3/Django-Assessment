@@ -8,7 +8,7 @@
 <body>
     <h2>Delete Game</h2>
     <p>Are you sure you want to delete the game?</p>
-    <form method="post" action="{% url 'delete_game' game.id %}">
+    <form method="post" action="{% url 'delete_game' team_name=team_name %}">
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
