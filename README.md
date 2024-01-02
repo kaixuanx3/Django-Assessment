@@ -31,7 +31,7 @@ cd Django-Assessment
 Create and activate a virtual environment:
 ```bash
 python -m venv myenv
-source myenv/bin/activate  # On Windows, use `myenv\Scripts\activate`
+myenv\Scripts\activate  # For mac users, use source myenv/bin/activate
 ```
 
 Run migrations:
