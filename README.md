@@ -26,3 +26,7 @@ The goal of this project is to implement a Django web application that meets the
 ```bash
 git clone https://github.com/yourusername/Django-Assessment.git
 cd Django-Assessment
+
+```bash
+python -m venv myenv
+source myenv/bin/activate  # On Windows, use `myenv\Scripts\activate`
