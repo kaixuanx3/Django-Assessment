@@ -4,7 +4,7 @@ from .models import Game
 from .forms import GameUploadForm, GameForm
 from io import TextIOWrapper
 from django.db.models import F, Sum
-from django.db.models import Case, When, Value, IntegerField
+from django.db.models import Case, When, Value, IntegerField, Q
 import csv
 
 def upload_csv(request):
@@ -107,6 +107,8 @@ def game_list(request):
         .order_by('-points', 'team_name')
     )
 
+    games = Game.objects.all()
+
     return render(request, 'game_list.html', {'teams_ranking': teams_ranking})
 
 def add_game(request):
@@ -120,19 +122,32 @@ def add_game(request):
     return render(request, 'add_game.html', {'form': form})
 
 def edit_game(request, team_name):
+    games = Game.objects.filter(team1_name=team_name)
+    if not games.exists():
+        return HttpResponseNotFound("Game not found")
+
+    game = games.first()
+
     if request.method == 'POST':
         form = GameForm(request.POST, instance=game)
         if form.is_valid():
             form.save()
-            return redirect('edit_game')
+            return redirect('game_list')  
     else:
         form = GameForm(instance=game)
-    return render(request, 'edit_game.html', {'form': form})
+
+    return render(request, 'edit_game.html', {'form': form, 'game': game, 'team_name': game.team1_name})
 
 def delete_game(request, team_name):
+    games = Game.objects.filter(Q(team1_name=team_name) | Q(team2_name=team_name))
+    if not games.exists():
+        return HttpResponseNotFound("Game not found")
+
+    game = games.first()
+
     if request.method == 'POST':
-        form = GameForm(request.POST)
         game.delete()
-        return redirect('delete_game')
-    return render(request, 'delete_game.html', {'form': form})
+        return redirect('game_list')
+
+    return render(request, 'delete_game.html', {'game': game})
 
