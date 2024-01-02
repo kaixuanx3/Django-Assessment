@@ -13,3 +13,16 @@ The goal of this project is to implement a Django web application that meets the
 - Enable users to add, edit, and delete games from the list.
 - Calculate points for each game (3 points for a win, 1 point for a draw, 0 points for a loss).
 - Rank teams based on points and alphabetical order in case of ties.
+
+## Requirements
+
+- Python: 3.9
+- Django: 3.2
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/Django-Assessment.git
+cd Django-Assessment
