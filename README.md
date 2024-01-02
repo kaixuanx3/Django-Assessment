@@ -21,12 +21,32 @@ The goal of this project is to implement a Django web application that meets the
 
 ## Installation
 
-1. Clone the repository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/yourusername/Django-Assessment.git
 cd Django-Assessment
+```
 
+Create and activate a virtual environment:
 ```bash
 python -m venv myenv
 source myenv/bin/activate  # On Windows, use `myenv\Scripts\activate`
+```
+
+Run migrations:
+Make sure that you run this, after defining the model.
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+## Usage
+
+1. Start the development server:
+```bash
+python manage.py runserver
+```
+2. Open your browser and navigate to http://localhost:8000.
+3. Use the web interface to upload CSV files, view the ranking table, and perform other actions.
+
