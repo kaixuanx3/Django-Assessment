@@ -8,6 +8,7 @@ Django Assessment is a Django web application designed to manage and display the
 The goal of this project is to implement a Django web application that meets the following requirements:
 
 *Allow users to upload a CSV file containing game results.
+
 *Display a ranking table based on the uploaded data.
 *Enable users to add, edit, and delete games from the list.
 *Calculate points for each game (3 points for a win, 1 point for a draw, 0 points for a loss).
