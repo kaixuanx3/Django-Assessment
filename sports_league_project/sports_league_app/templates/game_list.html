@@ -12,18 +12,6 @@
     <form method="get" action="{% url 'add_game' %}">
         <button type="submit">Add New Game</button>
     </form>
-    
-    <p> </p>
-
-    <form method="get" action="{% url 'edit_game' %}">
-        <button type="submit">Edit Game</button>
-    </form>
-
-    <p> </p>
-
-    <form method="get" action="{% url 'delete_game' %}">
-        <button type="submit">Delete Game</button>
-    </form>
 
     <p> </p>
 
@@ -33,6 +21,7 @@
                 <th>Ranking</th>
                 <th>Team</th>
                 <th>Points</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +30,16 @@
                     <td>{{ forloop.counter }}</td>
                     <td>{{ team.team_name }}</td>
                     <td>{{ team.points }}</td>
+                    <td>
+                        <form method="post" action="{% url 'edit_game' team_name=team.team_name %}">
+                            {% csrf_token %}
+                            <button type="submit">Edit Game</button>
+                        </form>
+                        <form method="post" action="{% url 'delete_game' team_name=team.team_name %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
